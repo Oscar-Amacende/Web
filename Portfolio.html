@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Terminal Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/jquery.terminal@2.45.2/css/jquery.terminal.min.css" rel="stylesheet"/>
+    <style>
+        /* Toda la ventana */
+        body, html { margin: 0; padding: 0; height: 100%; background-color: #000000; }
+    </style>
+</head>
+<body>
+    <div id="terminal-container"></div> 
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal@2.45.2/js/jquery.terminal.min.js"></script>
+    
+    <script>
+    jQuery(function($, undefined) {
+    // Inicializa la terminal en el div  'terminal-container'
+    $('#terminal-container').terminal(function(command) {
+        
+        // 'command' contiene lo que el usuario ha escrito
+        if (command == 'help') {
+            // 'this.echo()' 
+            this.echo("Avaliable commands:\n\n* about\n* contact\n* clear\n* experience\n");
+        } else if (command == 'about') {
+            this.echo('[[;#A1F2C0;bold;]Hola, soy Oscar Amacende.]');
+            this.echo("Entusiasta de la CLI y el Backend Web, mi mayor motivación es el aprendizaje y su uso para óptimas soluciones en IT\n")
+            this.echo("Mis intereses profesionales se centran en el desarrollo y la optimización del código, Actualmente estoy muy feliz de enrolarme y aprender de :\n")
+            this.echo(" [[;#A1F2C0;bold;]* https://www.coursera.org/specializations/ibm-backend-development]\n")
+            this.echo(" [[;#A1F2C0;bold;]* https://www.udemy.com/course/desarrollo-web-completo-con-html5-css3-js-php-y-mysql/ ]\n\n")
+            
+        } else if (command == 'contact') {
+            this.echo("Correo: oscarabrjs@gmail.com")
+            // Integrado en la librería
+        } else if (command == 'clear') {
+            // Integrado en la librería
+        } else if (command == 'experience') {
+            // Integrado en la librería
+        } else {
+            // Comando no reconocido, imitando el comportamiento de Bash
+            this.echo("bash: " + command + ": command not found");
+        }
+    }, {
+        // Opciones de configuración
+        greetings: 'AmacendeOS\nEscribe "help" para empezar.',
+        name: 'amacende_cli', // Nombre de la terminal
+        prompt: '[[;#BEADED;]root@portfolio:~$ ]' // El indicador de la línea de comandos
+    });
+});
+    </script>
+</body>
+</html>
