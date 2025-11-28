@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mi Terminal Web</title>
+    <title>AmacendeOS</title>
+    <link rel="shorcut icon" href="">
     <link href="https://cdn.jsdelivr.net/npm/jquery.terminal@2.45.2/css/jquery.terminal.min.css" rel="stylesheet"/>
     <style>
         /* Toda la ventana */
@@ -16,27 +17,42 @@
     
     <script>
     jQuery(function($, undefined) {
-    // Inicializa la terminal en el div  'terminal-container'
+    // Inicializa la terminal en el div con ID 'terminal-container'
     $('#terminal-container').terminal(function(command) {
         
-        // 'command' contiene lo que el usuario ha escrito
+        // Variables para el comando
+        const partir = command.trim().split(/\s+/);
+        const com = partir[0];
+        const args = partir.slice(1);
+
+
+        // La variable 'command' contiene lo que el usuario ha escrito
         if (command == 'help') {
-            // 'this.echo()' 
-            this.echo("Avaliable commands:\n\n* about\n* contact\n* clear\n* experience\n");
+            // 'this.echo()' es el equivalente a 'echo' en Bash (muestra texto)
+            this.echo("Avaliable commands:\n\n* about\n* contact\n* clear\n* exp\n* ls\n");
         } else if (command == 'about') {
             this.echo('[[;#A1F2C0;bold;]Hola, soy Oscar Amacende.]');
-            this.echo("Entusiasta de la CLI y el Backend Web, mi mayor motivación es el aprendizaje y su uso para óptimas soluciones en IT\n")
+            this.echo("Estudiante de Ingeniería en Computación, estoy interesado en la Cli y el Backend Web, mi mayor motivación es el aprendizaje y su uso para óptimas soluciones en IT\n")
             this.echo("Mis intereses profesionales se centran en el desarrollo y la optimización del código, Actualmente estoy muy feliz de enrolarme y aprender de :\n")
             this.echo(" [[;#A1F2C0;bold;]* https://www.coursera.org/specializations/ibm-backend-development]\n")
             this.echo(" [[;#A1F2C0;bold;]* https://www.udemy.com/course/desarrollo-web-completo-con-html5-css3-js-php-y-mysql/ ]\n\n")
             
+        } else if (command == 'cat') {
+            const filename = args[0];
+            if (args[0] === 'cv.txt') {
+                this.echo('Cat cv.txt << >>');
+            }
+            // Integrado en la librería
         } else if (command == 'contact') {
             this.echo("Correo: oscarabrjs@gmail.com")
             // Integrado en la librería
         } else if (command == 'clear') {
             // Integrado en la librería
-        } else if (command == 'experience') {
-            // Integrado en la librería
+        } else if (command == 'exp') {
+            this.echo("Éstos son mis proyectos")
+        } else if (command == 'ls'){
+            // Comando no reconocido, imitando el comportamiento de Bash
+            this.echo(" Cv.txt\n Portfolio.html\n App.js")
         } else {
             // Comando no reconocido, imitando el comportamiento de Bash
             this.echo("bash: " + command + ": command not found");
@@ -44,7 +60,7 @@
     }, {
         // Opciones de configuración
         greetings: 'AmacendeOS\nEscribe "help" para empezar.',
-        name: 'amacende_cli', // Nombre de la terminal
+        name: 'web_cli', // Nombre de la terminal
         prompt: '[[;#BEADED;]root@portfolio:~$ ]' // El indicador de la línea de comandos
     });
 });
